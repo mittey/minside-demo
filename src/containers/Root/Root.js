@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import classNames from "classnames";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
+import Paper from "@material-ui/core/Paper";
 
 import AppBar from "../../components/AppBar/AppBar";
 import Drawer from "../../components/Drawer/Drawer";
@@ -16,7 +17,6 @@ const styles = theme => ({
     display: "flex"
   },
   appFrame: {
-    height: 430,
     zIndex: 1,
     overflow: "hidden",
     position: "relative",
@@ -68,7 +68,8 @@ const styles = theme => ({
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    textAlign: "-webkit-center"
   },
   "content-left": {
     marginLeft: 0
@@ -135,9 +136,11 @@ class Root extends Component {
               )}
             >
               <div className={classes.drawerHeader} />
-
-              <Main />
-              
+              <Paper
+                style={{ maxWidth: "1000px", padding: "10px 10px 0 10px" }}
+              >
+                <Main />
+              </Paper>
             </main>
           </div>
         </div>

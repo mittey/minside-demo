@@ -5,13 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import { CardActions } from "@material-ui/core";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   card: {
     display: "flex",
-    marginBottom: "20px"
+    marginBottom: "20px",
+    minHeight: "160px"
   },
   details: {
     display: "flex",
@@ -30,21 +31,23 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit,
     paddingBottom: theme.spacing.unit
   },
-  playIcon: {
-    height: 38,
-    width: 38
+  typographyBody: {
+    display: "block",
+    verticalAlign: "middle",
+    textAlign: "left"
   },
   typography: {
     display: "inline",
     verticalAlign: "middle"
   },
   icon: {
-    width: "30px",
-    marginRight: "20px",
-    verticalAlign: "middle"
+    width: "auto",
+    // marginRight: "20px",
+    verticalAlign: "middle",
+    fontSize: "40px"
   },
-  iconButton: {
-    marginRight: "20px"
+  cardButton: {
+    width: "-webkit-fill-available"
   }
 });
 
@@ -54,20 +57,31 @@ class NavigationCard extends Component {
 
     return (
       <Card className={classes.card}>
-        <ButtonBase>
+        <ButtonBase className={classes.cardButton}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Icon
-                className={classNames(
-                  classes.icon,
-                  `far ${this.props.iconClass}`
-                )}
-              />
-              <Typography className={classes.typography} variant="title">
-                test test test
-              </Typography>
+              <Grid container spacing={16}>
+                <Grid item xs={3} >
+                  <Icon
+                    className={classNames(
+                      classes.icon,
+                      `far ${this.props.iconClass}`
+                    )}
+                  />
+                </Grid>
+                <Grid item xs={9} sm container>
+                  <Typography className={classes.typography} variant="title">
+                    {this.props.cardHeaderText}
+                  </Typography>
+                  <Typography
+                    className={classes.typographyBody}
+                    variant="body1"
+                  >
+                     {this.props.cardBodyText}
+                  </Typography>
+                </Grid>
+              </Grid>
             </CardContent>
-            <div className={classes.controls} />
           </div>
         </ButtonBase>
       </Card>
